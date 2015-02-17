@@ -1,32 +1,34 @@
 # JavaScript Linkify: Process links in text! #
-[http://benalman.com/projects/javascript-linkify/](http://benalman.com/projects/javascript-linkify/)
 
-Version: 0.3, Last updated: 6/27/2009
+Version: 0.4, Feb 16, 2015
 
-Visit the [project page](http://benalman.com/projects/javascript-linkify/) for more information and usage examples!
+This is a fork of Ben Alman's [orginal linkify library] (https://github.com/cowboy/javascript-linkify).
 
+I've packaged the library into an npm module, so you add it to your project like this:
 
-## Documentation ##
-[http://benalman.com/code/projects/javascript-linkify/docs/](http://benalman.com/code/projects/javascript-linkify/docs/)
+    npm install jbaudanza/javascript-linkify --save
 
+I've changed the function signature to return an array rather than a string. I did this to make it easier to generate React
+components, but you could also generate native DOM nodes directly. 
 
-## Examples ##
-This working example, complete with fully commented code, illustrates one way
-in which this code can be used.
+It works somewhat like this:
 
-[http://benalman.com/code/projects/javascript-linkify/examples/linkify/](http://benalman.com/code/projects/javascript-linkify/examples/linkify/)  
-
-## Support and Testing ##
-Information about what browsers this code has been tested in.
-
-### Browsers Tested ###
-Internet Explorer 6-8, Firefox 3-3.5, Safari 3-4, Chrome, Opera 9.
-
-
-## Release History ##
-
-0.3 - (6/27/2009) Initial release
-
+```javascript
+var linkify = require('linkify')
+var array = linkfy("Check out this link: www.example.com');
+```
+   
+`array` looks like:
+   
+```javascript
+[
+ ['Check out this link'],
+ ['www.example.com', 'www.example.com']
+]
+```
+   
+   You can then convert this output into React components, DOM nodes, or whatever you need. 
+   
 
 ## License ##
 Copyright (c) 2009 "Cowboy" Ben Alman  
