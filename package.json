@@ -1,0 +1,23 @@
+{
+  "name": "linkify",
+  "version": "0.4.0",
+  "description": "Fork of Ben Alman's linkify",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbaudanza/javascript-linkify"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbaudanza/javascript-linkify/issues"
+  },
+  "homepage": "https://github.com/jbaudanza/javascript-linkify"
+}
