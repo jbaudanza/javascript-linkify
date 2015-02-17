@@ -68,7 +68,7 @@
 // 
 //  (String) An HTML string containing links.
 
-window.linkify = (function(){
+module.exports = (function(){
   var
     SCHEME = "[a-z\\d.-]+://",
     IPV4 = "(?:(?:[0-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])\\.){3}(?:[0-9]|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])",
@@ -98,7 +98,12 @@ window.linkify = (function(){
     
     default_options = {
       callback: function( text, href ) {
-        return href ? '<a href="' + href + '" title="' + href + '">' + text + '</a>' : text;
+        if (href) {
+          href = href.replace('"', '%22');
+          return '<a href="' + href + '" title="' + href + '">' + text + '</a>';
+        } else {
+          return text;
+        }
       },
       punct_regexp: /(?:[!?.,:;'"]|(?:&|&amp;)(?:lt|gt|quot|apos|raquo|laquo|rsaquo|lsaquo);)$/
     };
@@ -204,7 +209,7 @@ window.linkify = (function(){
     
     // Process the array items.
     for ( i = 0; i < parts.length; i++ ) {
-      html += options.callback.apply( window, parts[i] );
+      html += options.callback.apply( this, parts[i] );
     }
     
     // In case of catastrophic failure, return the original text;
