@@ -56,10 +56,6 @@
 // 
 // Options:
 // 
-//  callback (Function) - If specified, this will be called once for each link-
-//    or non-link-chunk with two arguments, text and href. If the chunk is
-//    non-link, href will be omitted. If unspecified, the default linkification
-//    callback is used.
 //  punct_regexp (RegExp) - A RegExp that will be used to trim trailing
 //    punctuation from links, instead of the default. If set to null, trailing
 //    punctuation will not be trimmed.
@@ -97,14 +93,6 @@ module.exports = (function(){
     },
     
     default_options = {
-      callback: function( text, href ) {
-        if (href) {
-          href = href.replace('"', '%22');
-          return '<a href="' + href + '" title="' + href + '">' + text + '</a>';
-        } else {
-          return text;
-        }
-      },
       punct_regexp: /(?:[!?.,:;'"]|(?:&|&amp;)(?:lt|gt|quot|apos|raquo|laquo|rsaquo|lsaquo);)$/
     };
   
@@ -207,13 +195,7 @@ module.exports = (function(){
     // Push remaining non-link text onto the array.
     parts.push([ txt.substr( idx_prev ) ]);
     
-    // Process the array items.
-    for ( i = 0; i < parts.length; i++ ) {
-      html += options.callback.apply( this, parts[i] );
-    }
-    
-    // In case of catastrophic failure, return the original text;
-    return html || txt;
+    return parts;
   };
   
 })();
