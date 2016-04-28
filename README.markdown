@@ -15,7 +15,7 @@ It works somewhat like this:
 
 ```javascript
 var linkify = require('linkify')
-var array = linkfy("Check out this link: www.example.com');
+var array = linkfy("Check out this link: www.example.com");
 ```
    
 `array` looks like:
